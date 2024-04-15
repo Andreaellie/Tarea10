@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://drxmd041w3r7l"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_mgll1"]
+[ext_resource type="Texture2D" uid="uid://dmooal1xnw6g2" path="res://sprint/Sprout Lands - Sprites - Basic pack/Characters/Free Cow Sprites.png" id="1_nacfg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhbdk"]
+atlas = ExtResource("1_nacfg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyro0"]
+atlas = ExtResource("1_nacfg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hsccy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhbdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyro0")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhbdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyro0")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhbdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyro0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6enh"]
+radius = 22.0
+height = 72.0
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_mgll1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_hsccy")
+animation = &"swim"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 11)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_e6enh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1, 9)
+scale = Vector2(4, 2.1)
